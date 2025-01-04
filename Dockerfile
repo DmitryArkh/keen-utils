@@ -2,8 +2,6 @@ FROM node:alpine as build
 
 WORKDIR /app
 
-ENV VITE_API_URL http://localhost:5000/api
-
 COPY frontend/package*.json ./
 
 RUN npm install

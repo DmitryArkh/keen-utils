@@ -4,7 +4,7 @@ export default class Api {
   }
 
   static async get(endpoint, params = {}) {
-    const url = new URL(import.meta.env.VITE_API_URL + endpoint);
+    const url = new URL((import.meta.env.VITE_API_URL ?? (window.location.origin + '/api')) + endpoint);
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
     const response = await fetch(url);
     return this.#handleResponse(response);
@@ -23,7 +23,7 @@ export default class Api {
   }
 
   static async #requestWithBody(method, endpoint, body) {
-    const response = await fetch(import.meta.env.VITE_API_URL + endpoint, {
+    const response = await fetch((import.meta.env.VITE_API_URL ?? (window.location.origin + '/api')) + endpoint, {
       method,
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
