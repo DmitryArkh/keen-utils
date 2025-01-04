@@ -11,7 +11,7 @@ docker run --name keen-utils \
   -p 5000:5000 \
   -e KEENETIC_PASSWORD=MY_PASSWORD \
   -e ENTWARE_PASSWORD=MY_ENTWARE_PASSWORD \
-  ghcr.io/dmitryarkh/keen-utils:main
+  ghcr.io/dmitryarkh/keen-utils:latest
 ```
 ### Environment variables
 | Name              | Description                                    |

@@ -3,7 +3,10 @@
     height="40"
     app
   >
-    <v-row justify="start">
+    <v-row
+      class="mx-4"
+      justify="start"
+    >
       <span class="mx-2">
         CPU: {{ cpuLoad }}
       </span>

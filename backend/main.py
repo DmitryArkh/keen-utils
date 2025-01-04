@@ -94,6 +94,7 @@ def manage_dns():
                 if error:
                     raise Exception(error)
 
+                client.exec_command('system configuration save')
                 return jsonify({'ok': True, 'message': f'Domain {domain} added with IP {ip}'}), 200
 
             elif request.method == 'DELETE':
@@ -115,6 +116,7 @@ def manage_dns():
                 if error:
                     raise Exception(error)
 
+                client.exec_command('system configuration save')
                 return jsonify({'ok': True, 'message': f'Domain {domain} removed with IP {ip}'}), 200
 
     except Exception as e:
