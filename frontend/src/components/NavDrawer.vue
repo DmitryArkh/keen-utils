@@ -1,16 +1,16 @@
 <template>
   <v-list-item
     to="/"
-    title="Главная"
+    title="Home"
   />
   <v-list-item
     to="/dns"
     title="DNS"
   />
-  <v-list-item
-    to="/xkeen"
-    title="XKeen"
-  />
+<!--  <v-list-item-->
+<!--    to="/xkeen"-->
+<!--    title="XKeen"-->
+<!--  />-->
 </template>
 
 <script setup>
