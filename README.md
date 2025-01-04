@@ -2,7 +2,7 @@
 Various utilities for managing Keenetic devices
 
 ## Currently supported features
-* View static DNS records
+* Manage static DNS records
 * System status endpoint
 
 ## Deploying with Docker
