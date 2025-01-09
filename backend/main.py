@@ -1,8 +1,7 @@
 import json
-from json.decoder import JSONDecodeError
 import re
 
-from backend.json_minify import json_minify
+from json_minify import json_minify
 from ssh_manager import SSHManager
 from flask import Flask, jsonify, request, send_from_directory
 from settings import *
