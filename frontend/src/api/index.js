@@ -33,8 +33,8 @@ export default class Api {
 
   static async #handleResponse(response) {
     if (!response.ok) {
-      const errorMessage = await response.text();
-      throw new Error(`Ошибка: ${response.status} ${response.statusText} - ${errorMessage}`);
+      const errorMessage = (await response.json()).message ?? 'Unknown error';
+      throw new Error(`Error ${response.status}: ${errorMessage}`);
     }
     return response.json();
   }

@@ -1,28 +1,25 @@
 <template>
-  <v-card class="ma-8 px-4 py-2">
-    <v-card-title class="d-flex justify-space-between">
+  <v-card class="ma-8 px-4 pt-2 pb-6">
+    <v-card-title class="d-flex justify-space-between align-center">
       <span>Static DNS Records</span>
-      <v-btn
-        variant="flat"
-        prepend-icon="mdi-refresh"
-        @click="getRecords"
-      >
-        Refresh
-      </v-btn>
+      <v-card-actions>
+        <v-btn
+          variant="flat"
+          prepend-icon="mdi-refresh"
+          @click="getRecords"
+        >
+          Refresh
+        </v-btn>
+        <DNSNewRecord @add="getRecords" />
+      </v-card-actions>
     </v-card-title>
-  </v-card>
 
-  <v-card class="ma-8 pa-4">
-    <v-card-title class="d-flex justify-space-between">
-      <span>DNS Records - A</span>
-      <DnsNewRecord @add="getRecords" />
-    </v-card-title>
     <v-data-table
       :loading="isFetching"
       hide-default-footer
       density="compact"
       :headers="[ ...headers, { title: 'Actions', value: 'actions'} ]"
-      :items="records.static_a"
+      :items="records"
     >
       <template #item.actions="{ item }">
         <v-icon
@@ -33,17 +30,6 @@
         </v-icon>
       </template>
     </v-data-table>
-  </v-card>
-
-  <v-card class="ma-8 pa-4">
-    <v-card-title>DNS Records - AAAA</v-card-title>
-    <v-data-table
-      :loading="isFetching"
-      hide-default-footer
-      density="compact"
-      :headers="headers"
-      :items="records.static_aaaa"
-    />
   </v-card>
 
   <v-dialog
@@ -87,13 +73,9 @@
 </template>
 
 <script setup>
-import { onMounted } from "vue";
-import Dns from "@/api/dns.js";
+import DNS from "@/api/dns.js";
 
-const records = ref({
-  static_a: [],
-  static_aaaa: []
-});
+const records = ref([]);
 
 const headers = [
   {
@@ -113,7 +95,7 @@ const getRecords = async () => {
   }
   isFetching.value = true;
   try {
-    records.value = await Dns.getRecords();
+    records.value = await DNS.getRecords();
   } finally {
     isFetching.value = false;
   }
@@ -128,11 +110,8 @@ const isDeleting = ref(false);
 const deleteRecord = async () => {
   isDeleting.value = true;
   try {
-    const result = await Dns.deleteRecord(recordToDelete.value.hostname, recordToDelete.value.ip);
+    await DNS.deleteRecord(recordToDelete.value.hostname, recordToDelete.value.ip);
     recordToDelete.value = null;
-    if (!result.ok) {
-      throw new Error(result.message);
-    }
     getRecords();
     snackbarMessage.value = 'Record deleted successfully.';
     snackbarColor.value = 'success';

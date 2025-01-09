@@ -53,7 +53,7 @@ onMounted(() => {
   getStatus();
   setInterval(() => {
     getStatus();
-  }, 5000)
+  }, 10000)
 })
 </script>
 

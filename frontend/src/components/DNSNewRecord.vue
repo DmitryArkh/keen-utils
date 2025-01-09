@@ -76,7 +76,7 @@
 </template>
 
 <script setup>
-import Dns from "@/api/dns.js";
+import DNS from "@/api/dns.js";
 
 const emit = defineEmits(['add']);
 
@@ -112,10 +112,7 @@ const addRecord = async () => {
   if (!valid.value) return;
   isSending.value = true;
   try {
-    const result = await Dns.addRecord(hostname.value, ip.value);
-    if (!result.ok) {
-      throw new Error(result.message);
-    }
+    await DNS.addRecord(hostname.value, ip.value);
     dialog.value = false;
     hostname.value = '';
     ip.value = '';

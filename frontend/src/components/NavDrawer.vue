@@ -7,10 +7,10 @@
     to="/dns"
     title="DNS"
   />
-<!--  <v-list-item-->
-<!--    to="/xkeen"-->
-<!--    title="XKeen"-->
-<!--  />-->
+  <v-list-item
+    to="/xkeen"
+    title="XKeen"
+  />
 </template>
 
 <script setup>

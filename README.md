@@ -2,7 +2,8 @@
 Various utilities for managing Keenetic devices
 
 ## Currently supported features
-* Manage static DNS records
+* [XKeen](https://github.com/Skrill0/XKeen) configurator ✨
+* Static DNS record editor
 * System status endpoint
 
 ## Deploying with Docker

@@ -1,6 +1,6 @@
 import Api from "@/api";
 
-export default class Dns {
+export default class DNS {
   static async getRecords() {
     return await Api.get('/dns');
   }
@@ -9,13 +9,13 @@ export default class Dns {
     return await Api.put('/dns', {
       domain,
       ip,
-    })
+    });
   }
 
   static async deleteRecord(domain, ip) {
     return await Api.delete('/dns', {
       domain,
       ip,
-    })
+    });
   }
 }
